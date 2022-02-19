@@ -8,7 +8,7 @@ class ASpell;
 class	ATarget
 {
 public:
-	ATarget( std::string& TYPE) : type(TYPE) {}
+	ATarget( std::string TYPE) : type(TYPE) {}
 	ATarget( const ATarget& copy ) { *this = copy; }
 	ATarget&		operator=( const ATarget& rop )
 	{
@@ -22,8 +22,8 @@ public:
 
 	virtual ATarget*		clone( void ) = 0;
 
-	void					getHitBySpell( const ASpell& spell ) { std::cout << type << " has been " << spell.getEffects() << '!' << std::endl; }
-private:
+	void					getHitBySpell( ASpell& spell ) const; 
+protected:
 	std::string type;
 };
 

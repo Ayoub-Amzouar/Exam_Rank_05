@@ -7,7 +7,7 @@
 class	Dummy : public ATarget
 {
 public:
-	Dummy( void ) : type("Target Practice Dummy") {}
+	Dummy( void ) : ATarget("Target Practice Dummy") {}
 	// ~Dummy( void ) {}
 
 	ATarget*	clone( void ) { return (new Dummy()); }

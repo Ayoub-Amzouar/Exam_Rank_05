@@ -2,13 +2,12 @@
 #define __ASPELL_HPP__
 
 #include <iostream>
-
-class ATarget;
+#include "ATarget.hpp"
 
 class	ASpell
 {
 public:
-	ASpell( std::string& NAME, std::string& EFFECTS ) : name(NAME), effects(EFFECTS) {}
+	ASpell( std::string NAME, std::string EFFECTS ) : name(NAME), effects(EFFECTS) {}
 	ASpell( const ASpell& copy ) { *this = copy; }
 	ASpell&		operator=( const ASpell& rop )
 	{
@@ -21,13 +20,13 @@ public:
 	}
 	~ASpell( void ) {}
 
-	const std::string		getName( void ) const { return (this->name); }
-	const std::string		getEffects( void ) const { return (this->effects); }
+	std::string		getName( void ) const { return (this->name); }
+	std::string		getEffects( void ) const { return (this->effects); }
 
 	virtual ASpell*		clone( void ) = 0;
 
 	void				launch( const ATarget& target ) { target.getHitBySpell(*this); }
-private:
+protected:
 	std::string name;
 	std::string effects;
 };
