@@ -1,30 +1,31 @@
-#ifndef __ATARGET_HPP__
-#define __ATARGET_HPP__
+#pragma once
 
 #include <iostream>
-
-class ASpell;
+#include "ASpell.hpp"
 
 class	ATarget
 {
 public:
-	ATarget( std::string TYPE) : type(TYPE) {}
+	ATarget( void ) {}
+	ATarget( std::string TYPE ) : type(TYPE) {}
 	ATarget( const ATarget& copy ) { *this = copy; }
-	ATarget&		operator=( const ATarget& rop )
+	ATarget&	operator=( const ATarget& rop )
 	{
-		if (this != &rop)
-			this->type = rop.type;
+		if (this != &rop )
+			type = rop.type;
 		return (*this);
 	}
-	~ATarget( void ) {}
+	virtual ~ATarget( void ) {}
 
-	const std::string		getType( void ) const { return (this->type); }
+	const	std::string&	getType( void ) const { return (type); }
 
-	virtual ATarget*		clone( void ) = 0;
+	virtual	ATarget*	clone( void ) const = 0;
 
-	void					getHitBySpell( ASpell& spell ) const; 
+	void	getHitBySpell( const ASpell& spell ) const
+	{
+		std::cout << type << " has been " << spell.getEffects() << '!' << std::endl;
+	}
+
 protected:
-	std::string type;
+	std::string	type;
 };
-
-#endif

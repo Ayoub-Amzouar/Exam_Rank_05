@@ -1,34 +1,33 @@
-#ifndef __ASPELL_HPP__
-#define __ASPELL_HPP__
+#pragma once
 
 #include <iostream>
-#include "ATarget.hpp"
+
+class	ATarget;
 
 class	ASpell
 {
 public:
+	ASpell( void ) {}
 	ASpell( std::string NAME, std::string EFFECTS ) : name(NAME), effects(EFFECTS) {}
 	ASpell( const ASpell& copy ) { *this = copy; }
-	ASpell&		operator=( const ASpell& rop )
+	ASpell&	operator=( const ASpell& rop )
 	{
-		if (this != &rop)
+		if (this != &rop )
 		{
-			this->name = rop.name;
-			this->effects = rop.effects;
+			name = rop.name;
+			effects = rop.effects;
 		}
 		return (*this);
 	}
-	~ASpell( void ) {}
+	virtual ~ASpell( void ) {}
 
-	std::string		getName( void ) const { return (this->name); }
-	std::string		getEffects( void ) const { return (this->effects); }
+	const	std::string&	getName( void ) const { return (name); }
+	const	std::string&	getEffects( void ) const { return (effects); }
 
-	virtual ASpell*		clone( void ) = 0;
+	virtual	ASpell*	clone( void ) const = 0;
 
-	void				launch( const ATarget& target ) { target.getHitBySpell(*this); }
+	void			launch( const ATarget& target );
 protected:
-	std::string name;
-	std::string effects;
+	std::string	name;
+	std::string	effects;
 };
-
-#endif

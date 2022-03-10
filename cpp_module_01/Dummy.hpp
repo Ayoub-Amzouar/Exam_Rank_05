@@ -1,16 +1,17 @@
-#ifndef __DUMMY_HPP__
-#define __DUMMY_HPP__
+#pragma once
 
 #include <iostream>
 #include "ATarget.hpp"
 
-class	Dummy : public ATarget
+class Dummy : public ATarget
 {
 public:
 	Dummy( void ) : ATarget("Target Practice Dummy") {}
-	// ~Dummy( void ) {}
+	~Dummy( void ) {}
 
-	ATarget*	clone( void ) { return (new Dummy()); }
+	ATarget*	clone( void ) const
+	{
+		return(new Dummy());
+	}
+
 };
-
-#endif

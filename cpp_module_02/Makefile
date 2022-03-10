@@ -1,9 +1,11 @@
-NAME = Warlock
+NAME = Exec
 
 SRC = *.cpp
 
-All:
-	c++ -Werror -Wextra -Wall $(SRC) -o $(NAME)
+FLAGS = -Wextra -Wall -Werror
+
+all:
+	c++ $(FLAGS) $(SRC) -o $(NAME)
 
 clean:
-	rm -rf $(NAME)
+	rm $(NAME)
